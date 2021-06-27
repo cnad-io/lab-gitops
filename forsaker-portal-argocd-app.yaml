@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: forsaker-portal
+spec:
+  destination:
+    name: ''
+    namespace: lab-gitops
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ./
+    repoURL: 'https://github.com/cnad-io/forsaker-portal.git'
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  project: lab-gitops
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
